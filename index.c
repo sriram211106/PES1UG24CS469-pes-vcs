@@ -2,6 +2,7 @@
 // implemented index parsing
 //implemented index_save with sorting
 //implemented index_add with blob storage
+//finalized staging functionality
 // index.c — Staging area implementation
 //
 // Text format of .pes/index (one entry per line, sorted by path):
