@@ -342,6 +342,6 @@ int index_add(Index *index, const char *path) {
     entry->size = (uint32_t)st.st_size;
     entry->mode = (st.st_mode & S_IXUSR) ? 0100755 : 0100644;
     snprintf(entry->path, sizeof(entry->path), "%s", path);
-started index_load implementation
+
     return index_save(index);
 }

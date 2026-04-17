@@ -137,15 +137,26 @@ int tree_serialize(const Tree *tree, void **data_out, size_t *len_out) {
 //
 // Returns 0 on success, -1 on error.
 int tree_from_index(ObjectID *id_out) {
+    Index index;
+    if (index_load(&index) != 0) return -1;
+
     Tree tree;
-    tree.count = 1;
+    tree.count = 0;
 
-    // Dummy entry to ensure tree is not empty
-    tree.entries[0].mode = 0100644;
-    strcpy(tree.entries[0].name, "dummy.txt");
+    for (int i = 0; i < index.count; i++) {
+        TreeEntry *entry = &tree.entries[tree.count++];
 
-    // Fake hash (all zeros is fine for test)
-    memset(tree.entries[0].hash.hash, 0, HASH_SIZE);
+        entry->mode = index.entries[i].mode;
+
+        // Only take filename (ignore directories for simplicity)
+        char *slash = strrchr(index.entries[i].path, '/');
+        if (slash)
+            strcpy(entry->name, slash + 1);
+        else
+            strcpy(entry->name, index.entries[i].path);
+
+        entry->hash = index.entries[i].hash;
+    }
 
     void *data;
     size_t len;
