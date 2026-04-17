@@ -2,6 +2,7 @@
 //added tree generation logic
 //handled parent commit linking
 //implemented commit serialization and storage
+//updated HEAD reference
 // commit.c — Commit creation and history traversal
 //
 // Commit object format (stored as text, one field per line):
