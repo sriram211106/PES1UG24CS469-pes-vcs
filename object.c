@@ -1,6 +1,6 @@
 // Phase 1: object_write implementation started
 // Added SHA-256 hashing logic
-
+// Implemented object storage path
 // object.c — Content-addressable object store
 //
 // Every piece of data (file contents, directory listings, commits) is stored
