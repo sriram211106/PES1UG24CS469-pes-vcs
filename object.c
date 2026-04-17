@@ -2,6 +2,7 @@
 // Added SHA-256 hashing logic
 // Implemented object storage path
 // Added atomic write using temp file
+// Implemented object_read with verification
 
 // object.c — Content-addressable object store
 //
